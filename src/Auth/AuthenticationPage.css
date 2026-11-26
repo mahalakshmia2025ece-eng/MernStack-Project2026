@@ -1,11 +1,12 @@
-/* * {
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} */
+}
 
 .container {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,15 +49,22 @@
     padding: 10px 25px;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .auth-box button:hover {
     background-color: burlywood;
     color: black;
-    cursor: pointer;
 }
 
 .auth-box p {
     color: white;
     margin-top: 15px;
+}
+
+.auth-box .switch {
+    background-color: transparent;
+    color: white;
+    padding: 5px;
+    margin-left: 5px;
 }

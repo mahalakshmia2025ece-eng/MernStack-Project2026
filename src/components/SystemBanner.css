@@ -1,0 +1,19 @@
+
+.system-banner {
+    background-color: #10172e;
+    color: white;
+    padding: 20px;
+    margin: 15px;
+    border: 2px solid #6d28d9;
+    border-radius: 12px;
+}
+
+.system-banner h3 {
+    color: #a78bfa;
+    margin-bottom: 8px;
+}
+
+.system-banner p {
+    color: #d1d5db;
+}
+
