@@ -1,32 +1,42 @@
 
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './AuthenticationPage.css'
 
 const AuthenticationPage = () => {
 
-  const [isLogin,setIsLogin] = useState(true);
-  const [name,setName] = useState("");
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
-  const [message,setMessage] = useState("");
+  const [isLogin, setIsLogin] = useState(true)
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [message, setMessage] = useState("")
+
+  const navigate = useNavigate()
 
   const handlesubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if(email === "" || password === "" || (!isLogin && name === "")) {
-      setMessage("Please fill all fields");
+    if (email === "" || password === "" || (!isLogin && name === "")) {
+      setMessage("Please fill all fields")
+    }
+    else if (password.length < 8) {
+      setMessage("Password must contain at least 8 characters")
     }
     else {
-      setMessage(isLogin ? "Login Successful" : "Signup Successful");
+      setMessage(isLogin ? "Login Successful" : "Signup Successful")
+
+      alert(isLogin ? "Login Successful!" : "Signup Successful!")
+
+      navigate('/dashboard')
     }
   }
 
   const changeMode = () => {
-    setIsLogin(!isLogin);
-    setName("");
-    setEmail("");
-    setPassword("");
-    setMessage("");
+    setIsLogin(!isLogin)
+    setName("")
+    setEmail("")
+    setPassword("")
+    setMessage("")
   }
 
   return (
@@ -41,33 +51,39 @@ const AuthenticationPage = () => {
 
           {!isLogin && (
             <>
-              <label>Name : </label>
-              <input type="text"
+              <label>Name :</label>
+              <input
+                type="text"
                 placeholder="Enter Your Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
               />
-              <br/><br/>
+              <br /><br />
             </>
           )}
 
-          <label>Email : </label>
-          <input type="email"
+          <label>Email :</label>
+          <input
+            type="email"
             placeholder="Enter Your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
 
-          <br/><br/>
+          <br /><br />
 
-          <label>Password : </label>
-          <input type="password"
+          <label>Password :</label>
+          <input
+            type="password"
             placeholder="Enter Your Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
 
-          <br/><br/>
+          <br /><br />
 
           <button type="submit">
             {isLogin ? "Login" : "Sign Up"}
@@ -79,7 +95,12 @@ const AuthenticationPage = () => {
 
         <p>
           {isLogin ? "Don't have an account?" : "Already have an account?"}
-          <button className="switch" onClick={changeMode}>
+
+          <button
+            type="button"
+            className="switch"
+            onClick={changeMode}
+          >
             {isLogin ? "Sign Up" : "Login"}
           </button>
         </p>

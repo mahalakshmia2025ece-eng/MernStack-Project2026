@@ -1,49 +1,63 @@
 
 import React from 'react'
-import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
-import TaskCard from './components/TaskCard'
-import SystemBanner from './components/SystemBanner'
+import { Routes, Route, Navigate } from 'react-router-dom'
+
+import AuthenticationPage from "./Auth/AuthenticationPage";
+import Dashboard from './components/Dashboard'
+
+import Home from './pages/Home'
+import Search from './pages/Search'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import Service from './pages/Service'
+import Profile from './pages/Profile'
+
+import SolarSystem from './pages/SolarSystem'
+import Planets from './pages/Planets'
+import Galaxies from './pages/Galaxies'
+import BlackHoles from './pages/BlackHoles'
+import SpaceMissions from './pages/SpaceMissions'
+import PhysicsLibrary from './pages/PhysicsLibrary'
+import LatestDiscoveries from './pages/LatestDiscoveries'
+import Settings from './pages/Settings'
+import QuantumPhysics from './pages/QuantumPhysics'
+
+import './App.css'
 
 const App = () => {
   return (
-    <>
-      <SystemBanner />
-      <Navbar />
+    <Routes>
 
-      <div style={{display:'flex'}}>
+      {/* Authentication */}
+      <Route path="/" element={<AuthenticationPage />} />
 
-        <Sidebar />
+      {/* Dashboard */}
+      <Route path="/dashboard" element={<Dashboard />}>
 
-        <div >
+        <Route index element={<Home />} />
 
-          <div style={{display:'flex', flexWrap:'wrap',}}>
+        <Route path="search" element={<Search />} />
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="service" element={<Service />} />
+        <Route path="profile" element={<Profile />} />
 
-            <TaskCard
-              title="🌏Solar System"
-              description="Explore planets and their movements."
-            />
+        <Route path="solar-system" element={<SolarSystem />} />
+        <Route path="planets" element={<Planets />} />
+        <Route path="galaxies" element={<Galaxies />} />
+        <Route path="black-holes" element={<BlackHoles />} />
+        <Route path="space-missions" element={<SpaceMissions />} />
+        <Route path="physics-library" element={<PhysicsLibrary />} />
+        <Route path="latest-discoveries" element={<LatestDiscoveries />} />
+        <Route path="settings" element={<Settings />} />
 
-            <TaskCard
-              title="⚫Black Holes"
-              description="Discover the mysteries of black holes."
-            />
+        <Route path="quantum-physics" element={<QuantumPhysics />} />
 
-            <TaskCard
-              title="🌌Galaxies"
-              description="Learn about different types of galaxies."
-            />
+      </Route>
 
-            <TaskCard
-              title="✍️Quantum Physics"
-              description="Explore quantum physics."
-            />
+      <Route path="*" element={<Navigate to="/" />} />
 
-          </div>
-        </div>
-
-      </div>
-    </>
+    </Routes>
   )
 }
 
